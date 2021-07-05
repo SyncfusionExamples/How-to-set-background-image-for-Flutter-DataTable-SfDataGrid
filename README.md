@@ -64,7 +64,7 @@ class EmployeeDataGridSource extends DataGridSource {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("image/Datagrid.png"), fit: BoxFit.cover)),
+                image: AssetImage("image/BackgroundImage.png"), fit: BoxFit.cover)),
         child: SfDataGridTheme(
           data: SfDataGridThemeData(headerColor: Colors.transparent),
           child: SfDataGrid(
