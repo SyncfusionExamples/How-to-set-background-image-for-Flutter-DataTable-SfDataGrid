@@ -1,109 +1,39 @@
-# How to set background image for Flutter DataTable SfDataGrid
+# Flutter DataGrid Set Background Image
 
-Set the background image to Flutter DataTable by wrapping the DataGrid inside the Container and set the color as transparent for rows and header. Then add the image to the image property of decoration box in Container.
 
-## STEP 1
+This repository contains a sample that demonstrates how to set a background image for the Syncfusion® DataGrid package.
 
- Create the folder inside the application and add the image inside that folder. Also, add the image path in pubspec.yaml file. 
 
- ```xml
-   assets:
-    - image/DataGrid.png
-```
+## Syncfusion® controls:
 
-## STEP 2 
 
-Create EmployeeDataGridSource class extends with DataGridSource for mapping data to the SfDataGrid. Override the buildRow method and return the DataGridRowAdapter. You should set row background color as transparent using color property of DataGridRowAdapter.
+This project used the following Syncfusion® widget(s):
+* [DataGrid](https://www.syncfusion.com/flutter-widgets/flutter-datagrid)
 
-```xml
-class EmployeeDataGridSource extends DataGridSource {
-  /// Creates the employee data source class with required details.
-  EmployeeDataGridSource({required List<Employee> employeeData}) {
-    _employeeData = employeeData
-        .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<int>(columnName: 'id', value: e.id),
-              DataGridCell<String>(columnName: 'name', value: e.name),
-              DataGridCell<String>(
-                  columnName: 'designation', value: e.designation),
-              DataGridCell<int>(columnName: 'salary', value: e.salary),
-            ]))
-        .toList();
-  }
 
-  List<DataGridRow> _employeeData = [];
+## Supported platforms
 
-  @override
-  List<DataGridRow> get rows => _employeeData;
 
-  @override
-  DataGridRowAdapter buildRow(DataGridRow row) {
-    return DataGridRowAdapter(
-      color: Colors.transparent,
-        cells: row.getCells().map<Widget>((e) {
-      return Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(8.0),
-        child: Text(e.value.toString()),
-      );
-    }).toList());
-  }
-}
-```
- 
-## STEP 3
+Refer to the following link to know about the supported platform - [Platforms](https://help.syncfusion.com/flutter/system-requirements#supported-platforms)
 
- Initialize the SfDataGrid with all the required properties. Set the headerColor as transparent using  SfDataGridThemeData.headerColor property. Wrap the SfDataGridThemeData inside the container and add the image to BoxDecoration.image property.
 
-```xml
-@override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Syncfusion Flutter DataGrid'),
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("image/BackgroundImage.png"), fit: BoxFit.cover)),
-        child: SfDataGridTheme(
-          data: SfDataGridThemeData(headerColor: Colors.transparent),
-          child: SfDataGrid(
-            source: employeeDataGridSource,
-            columnWidthMode: ColumnWidthMode.fill,
-            columns: <GridColumn>[
-              GridColumn(
-                  columnName: 'id',
-                  label: Container(
-                      padding: EdgeInsets.all(16.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'ID',
-                      ))),
-              GridColumn(
-                  columnName: 'name',
-                  label: Container(
-                      padding: EdgeInsets.all(8.0),
-                      alignment: Alignment.center,
-                      child: Text('Name'))),
-              GridColumn(
-                  columnName: 'designation',
-                  label: Container(
-                      padding: EdgeInsets.all(8.0),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Designation',
-                        overflow: TextOverflow.ellipsis,
-                      ))),
-              GridColumn(
-                  columnName: 'salary',
-                  label: Container(
-                      padding: EdgeInsets.all(8.0),
-                      alignment: Alignment.center,
-                      child: Text('Salary'))),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-```
+## Requirements to run the sample
+
+
+Refer to the following link to know about system requirements - [System Requirements](https://help.syncfusion.com/flutter/system-requirements)
+
+
+## How to run the sample
+
+
+1. Clone the sample and open it in preferred IDE.
+2. Run the application.
+
+
+*Note: If you download the sample using the "Download ZIP" option, right-click it, select Properties, and then select Unblock.*
+
+
+## License
+
+
+Syncfusion® has no liability for any damage or consequence that may arise by using or viewing the samples. The samples are for demonstrative purposes, and if you choose to use or access the samples, you agree to not hold Syncfusion® liable, in any form, for any damage that is related to use, for accessing, or viewing the samples. By accessing, viewing, or seeing the samples, you acknowledge and agree Syncfusion®’s samples will not allow you seek injunctive relief in any form for any claim related to the sample. If you do not agree to this, do not view, access, utilize, or otherwise do anything with Syncfusion®’s samples.
